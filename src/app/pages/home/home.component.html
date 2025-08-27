@@ -1,0 +1,54 @@
+<section class="search-filters">
+    <div class="search-container">
+        <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Buscar películas por título</mat-label>
+            <div class="input-container">
+                <input matInput type="search" placeholder="Escribe el título de la película" #textSearch
+                    (keyup.enter)="search(textSearch.value)" />
+                <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="search"
+                    (click)="search(textSearch.value)"></mat-icon>
+            </div>
+        </mat-form-field>
+    </div>
+
+    <div class="filters-container">
+        <mat-form-field appearance="outline">
+            <mat-label>Filtrar por Idioma</mat-label>
+            <mat-select [(value)]="selectedLanguage" (selectionChange)="applyFilter()">
+                <mat-option value="all">Todos</mat-option>
+                @for (lang of languages; track $index) {
+                    <mat-option [value]="lang">
+                        {{ lang }}
+                    </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </div>
+</section>
+
+
+
+<section>
+    <h2 class="title">Cartelera</h2>
+    <div id="container">
+
+        <div class="cards-container">
+            @for (movie of this.pageMovies; track movie.id) {
+            <mat-card class="card" (click)="openMovieDetails(movie.id)">
+                <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+                    alt="{{ movie.title }}" class="img">
+                <mat-card-content>
+                    <h3>{{ movie.title }}</h3>
+                    <p>Date: {{ movie.release_date }}</p>
+                    <p>Description: {{movie.overview}}</p>
+                </mat-card-content>
+            </mat-card>
+            }
+        </div>
+
+        <mat-paginator class="paginator" [length]="filteredMovies.length" [pageSize]="pageSize"
+            [pageSizeOptions]="[4, 8, 12, 16, 20]" (page)="onPageChange($event)" aria-label="Seleccionar página">
+        </mat-paginator>
+
+    </div>
+</section>

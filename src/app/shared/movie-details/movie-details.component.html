@@ -1,0 +1,16 @@
+<section>
+    <div id="img">
+        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + moviesDetails.poster_path"
+                    alt="{{ moviesDetails.title }}" class="img">
+    </div>
+    <div id="description">
+        <h2>{{moviesDetails.title}}  ({{moviesDetails.release_date | date:"yyyy"}})</h2>
+        <h4>{{moviesDetails.release_date}} - <span *ngFor="let genres of moviesDetails?.genres; let last = last">
+    {{ genres.name }}<span *ngIf="!last">, </span></span> - {{moviesDetails.runtime}} min.
+        </h4>
+        <p><i>{{moviesDetails.tagline}}</i></p>
+        <h3>Resume</h3>
+        <p>{{moviesDetails.overview}}</p><br>
+        <p>URL: <a [href]="moviesDetails.homepage" target="_blank">{{ moviesDetails.homepage }}</a></p>
+    </div>
+</section>

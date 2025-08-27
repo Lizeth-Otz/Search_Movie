@@ -1,0 +1,70 @@
+.title{
+    padding-left: 10px;
+}
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.card {
+    width: 300px;
+}
+
+.card:hover {
+  transform: scale(1.03); /* se agranda un poco */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* sombra más fuerte */
+  cursor: pointer;
+}
+
+.search-filters{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.search-container {
+  flex: 0 0 50%; 
+}
+
+.filters-container {
+  flex: 0 0 25%; 
+}
+
+.search-field, 
+.filters-container mat-form-field {
+  width: 100%;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-container input {
+  width: 100%;
+  padding-right: 40px; 
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding-left: 10px;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: gray;
+}
+
+
+
