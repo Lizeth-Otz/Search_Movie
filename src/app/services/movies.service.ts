@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class MoviesService { 
   private apiURL = 'https://api.themoviedb.org/3/movie/now_playing?page=1';
   private apiURLMovie = 'https://api.themoviedb.org/3/movie/'
+  private apiURLSearch = 'https://api.themoviedb.org/3/search/movie?query='
   private headers = new HttpHeaders({
     accept: 'application/json',
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYjAyNGFkNzBjODAyZmE5NjExYjA0NjFhOThhMjFlOCIsIm5iZiI6MTc1NjE2MDI5My41LCJzdWIiOiI2OGFjZTEyNTYxNmMzZDJjYTg2Y2VlZGUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.k1b0n0bZR0XObS7WQc3GPJ4fJffje1CzsRe8AUMFdhs'
@@ -23,5 +24,11 @@ export class MoviesService {
   getMovie(id: number): Observable<MovieDetails>{
     return this.http.get<MovieDetails>(`${this.apiURLMovie}${id}`, { headers: this.headers });
   }
+
+  searchMovies(query: string) {
+  const url = `${this.apiURLSearch}${query}&page=1`;
+  return this.http.get<MoviesResponse>(url, { headers: this.headers });
+}
+
 
 }

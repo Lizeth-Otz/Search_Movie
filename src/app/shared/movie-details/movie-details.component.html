@@ -1,4 +1,9 @@
 <section>
+    
+    <div class="close-button" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+    </div>
+
     <div id="img">
         <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + moviesDetails.poster_path"
                     alt="{{ moviesDetails.title }}" class="img">
@@ -11,6 +16,7 @@
         <p><i>{{moviesDetails.tagline}}</i></p>
         <h3>Resume</h3>
         <p>{{moviesDetails.overview}}</p><br>
-        <p>URL: <a [href]="moviesDetails.homepage" target="_blank">{{ moviesDetails.homepage }}</a></p>
+        <p *ngIf="moviesDetails.homepage != '' ">URL: <a [href]="moviesDetails.homepage" target="_blank">{{ moviesDetails.homepage }}</a></p>
+        <p *ngIf="moviesDetails.homepage == '' ">Esta película no cuenta con URL</p>
     </div>
 </section>
