@@ -62,7 +62,11 @@ export class HomeComponent {
   }
 
   ngAfterViewInit() {
-    this.paginator._intl.itemsPerPageLabel = 'Elementos por página';
+    //setTimeout(() => {
+    if (this.paginator) {
+      this.paginator._intl.itemsPerPageLabel = 'Elementos por página';
+    }
+  //});
   }
 
   updatePageMovies(): void {
