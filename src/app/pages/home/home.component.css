@@ -66,5 +66,8 @@
   color: gray;
 }
 
-
+.no-results{
+  text-align: center;
+  font-weight: bold;
+}
 

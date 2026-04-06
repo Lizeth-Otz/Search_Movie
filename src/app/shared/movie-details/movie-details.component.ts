@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MoviesService } from '../../services/movies.service';
 import { MovieDetails } from '../../models/movies';
 
@@ -13,7 +13,7 @@ export class MovieDetailsComponent {
 
   moviesDetails: MovieDetails = {};
 
-  constructor(private _moviesService:MoviesService, 
+  constructor(private _moviesService:MoviesService, public dialogRef: MatDialogRef<MovieDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: number) {}
 
   ngOnInit(){
@@ -28,4 +28,9 @@ export class MovieDetailsComponent {
         }
       })
   }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
 }

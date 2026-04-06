@@ -2,25 +2,24 @@
     <div class="search-container">
         <mat-form-field appearance="outline" class="search-field">
             <mat-label>Buscar películas por título</mat-label>
-            <div class="input-container">
-                <input matInput type="search" placeholder="Escribe el título de la película" #textSearch
-                    (keyup.enter)="search(textSearch.value)" />
-                <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="search"
-                    (click)="search(textSearch.value)"></mat-icon>
-            </div>
+            <input matInput type="search" [formControl]="searchControl" placeholder="Escribe el título"
+                    (keyup.enter)="search(searchControl.value)" />
+            <mat-icon class="search-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="search"
+                    (click)="search(searchControl.value)"></mat-icon>
         </mat-form-field>
+
     </div>
 
     <div class="filters-container">
         <mat-form-field appearance="outline">
             <mat-label>Filtrar por Idioma</mat-label>
-            <mat-select [(value)]="selectedLanguage" (selectionChange)="applyFilter()">
+            <mat-select [(value)]="selectedLanguage" (selectionChange)="onLanguageChange()">
                 <mat-option value="all">Todos</mat-option>
-                @for (lang of languages; track $index) {
-                    <mat-option [value]="lang">
-                        {{ lang }}
-                    </mat-option>
-                }
+                <mat-option value="en">Inglés</mat-option>
+                <mat-option value="ja">Japonés</mat-option>
+                <mat-option value="th">Tailandes</mat-option>
+                <mat-option value="de">Alemán</mat-option>
+                <mat-option value="zh">Mandarín</mat-option>
             </mat-select>
         </mat-form-field>
     </div>
@@ -31,6 +30,11 @@
 <section>
     <h2 class="title">Cartelera</h2>
     <div id="container">
+
+         <!-- Mensaje cuando no hay resultados -->
+    <div *ngIf="filteredMovies.length === 0" class="no-results">
+      No se encontraron películas que coincidan con la búsqueda.
+    </div>
 
         <div class="cards-container">
             @for (movie of this.pageMovies; track movie.id) {
